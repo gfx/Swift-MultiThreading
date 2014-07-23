@@ -70,15 +70,27 @@ class ViewController: UIViewController {
         }
     }
     
+    class AutoSync {
+        let object : AnyObject
+        
+        init(_ obj : AnyObject) {
+            object = obj
+            objc_sync_enter(object)
+        }
+        
+        deinit {
+            objc_sync_exit(object)
+        }
+    }
+    
     func incrementWithObjcSync() {
-        objc_sync_enter(self)
+        let lock = AutoSync(self)
         self.value += 1
-        objc_sync_exit(self)
     }
     
     func incrementWithSerialQueue() {
         struct _IncrementWithSyncQueue {
-            static var s = dispatch_queue_create("incrementWithSyncQueue", DISPATCH_QUEUE_SERIAL)
+            static let s = dispatch_queue_create("incrementWithSyncQueue", DISPATCH_QUEUE_SERIAL)
         }
         
         dispatch_sync(_IncrementWithSyncQueue.s) {
