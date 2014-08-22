@@ -25,12 +25,13 @@ class ViewController: UIViewController {
         
         let interval = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC))
         dispatch_after(interval, dispatch_get_main_queue()) {
-            NSLog("start")
             self.useObjcSync()
         }
     }
     
     func useObjcSync() {
+        NSLog("start with objc_sync_enter")
+
         t0 = NSDate().timeIntervalSince1970
 
         dispatch_async(c1) {
@@ -51,6 +52,7 @@ class ViewController: UIViewController {
     }
     
     func useSerialQueue() {
+        NSLog("start with serial queue")
         t0 = NSDate().timeIntervalSince1970
         
         dispatch_async(c1) {
