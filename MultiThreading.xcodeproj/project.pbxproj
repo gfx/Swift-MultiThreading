@@ -330,6 +330,7 @@
 				INFOPLIST_FILE = MultiThreading/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Debug;
 		};
@@ -398,6 +399,7 @@
 				FA45379D197FE1BD00E98477 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA45379E197FE1BD00E98477 /* Build configuration list for PBXNativeTarget "MultiThreadingTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +408,7 @@
 				FA4537A0197FE1BD00E98477 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
