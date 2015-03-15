@@ -2,8 +2,8 @@
 //  MultiThreadingTests.swift
 //  MultiThreadingTests
 //
-//  Created by Fuji Goro on 2014/07/23.
-//  Copyright (c) 2014年 FUJI Goro. All rights reserved.
+//  Created by Fuji Goro on 2015/03/16.
+//  Copyright (c) 2015年 FUJI Goro. All rights reserved.
 //
 
 import UIKit
