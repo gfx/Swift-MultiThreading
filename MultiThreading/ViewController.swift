@@ -13,12 +13,13 @@ class ViewController: UIViewController {
     
     var c1 = dispatch_queue_create("concurrent.1", DISPATCH_QUEUE_CONCURRENT)
     var c2 = dispatch_queue_create("concurrent.2", DISPATCH_QUEUE_CONCURRENT)
-    var sync = dispatch_queue_create("serial", DISPATCH_QUEUE_SERIAL)
-    
+
+    let sync = dispatch_queue_create("\(self.dynamicType).sync", DISPATCH_QUEUE_SERIAL)
+
     var value : Int = 0;
     
     var t0 = NSDate().timeIntervalSince1970
-                            
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -91,11 +92,7 @@ class ViewController: UIViewController {
     }
     
     func incrementWithSerialQueue() {
-        struct _IncrementWithSyncQueue {
-            static let s = dispatch_queue_create("incrementWithSyncQueue", DISPATCH_QUEUE_SERIAL)
-        }
-        
-        dispatch_sync(_IncrementWithSyncQueue.s) {
+        dispatch_sync(sync) {
             self.value += 1
         }
     }
