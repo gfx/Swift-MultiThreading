@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         t0 = NSDate().timeIntervalSince1970
 
         dispatch_async(c1) {
-            for  i in 0 ..< self.N {
+            for  _ in 0 ..< self.N {
                 self.incrementWithObjcSync()
             }
             
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         }
         
         dispatch_async(c2) {
-            for  i in 0 ..< self.N {
+            for  _ in 0 ..< self.N {
                 self.incrementWithObjcSync()
             }
             
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         t0 = NSDate().timeIntervalSince1970
         
         dispatch_async(c1) {
-            for  i in 0 ..< self.N {
+            for  _ in 0 ..< self.N {
                 self.incrementWithSerialQueue()
             }
             
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         }
         
         dispatch_async(c2) {
-            for  i in 0 ..< self.N {
+            for  _ in 0 ..< self.N {
                 self.incrementWithSerialQueue()
             }
             
@@ -87,6 +87,7 @@ class ViewController: UIViewController {
     }
     
     func incrementWithObjcSync() {
+        // XXX: do not rename "lock" to "_", which seems to make it no-op
         let lock = AutoSync(self)
         self.value += 1
     }
@@ -124,6 +125,7 @@ class ViewController: UIViewController {
     }
     
     func show(message : String) {
+        NSLog("finished %@", message);
         let alert = UIAlertView(title: "Finished", message: message, delegate: nil, cancelButtonTitle: "OK")
         alert.show()
     }
